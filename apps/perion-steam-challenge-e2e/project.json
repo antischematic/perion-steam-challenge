@@ -1,0 +1,7 @@
+{
+  "name": "perion-steam-challenge-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/perion-steam-challenge-e2e/src",
+  "targets": {},
+  "implicitDependencies": ["perion-steam-challenge"]
+}
