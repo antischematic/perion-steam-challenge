@@ -46,4 +46,4 @@ out
 
 # Environment variables
 
-.env
+apps/perion-steam-challenge/.env

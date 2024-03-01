@@ -20,7 +20,9 @@
       ],
       "@perion.steam.challenge/component-library/server": [
         "libs/component-library/src/server.ts"
-      ]
+      ],
+      "@perion.steam.challenge/steam-api": ["libs/steam-api/src/index.ts"],
+      "@perion.steam.challenge/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
