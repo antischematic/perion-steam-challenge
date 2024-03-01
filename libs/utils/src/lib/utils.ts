@@ -9,3 +9,9 @@ export function applySchema<T extends ZodType>(schema: T, body: unknown): z.infe
 
   throw new Error(parsed.error.message, { cause: parsed.error })
 }
+
+export function sortBy<T extends unknown[]>(list: T, select: (item: T[number]) => number): T[number][] {
+  return list.slice().sort((a, b) => {
+    return (select(a) - select(b))
+  })
+}

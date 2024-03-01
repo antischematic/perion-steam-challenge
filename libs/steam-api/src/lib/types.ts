@@ -11,6 +11,6 @@ export interface SteamGame {
 }
 
 export type GetOwnedGamesResponse = {
-    game_count?: number
-    games?: SteamGame[]
+    game_count: number
+    games: SteamGame[]
 }

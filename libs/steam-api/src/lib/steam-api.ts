@@ -23,6 +23,10 @@ export class SteamApiClient {
   async getGamesBySteamId(steamId: string, { includeAppInfo = true, includePlayedFreeGames = true } = {}): Promise<GetOwnedGamesResponse> {
     const response = await fetch(`http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${this.apiKey}&steamid=${steamId}&format=json&include_appinfo=${includeAppInfo}&include_played_free_games=${includePlayedFreeGames}`)
     const steamGamesByUserId = applySchema(ownedGamesApiSchema, await response.json())
-    return steamGamesByUserId.response
+    return {
+      games: [],
+      game_count: 0,
+      ...steamGamesByUserId.response
+    }
   }
 }

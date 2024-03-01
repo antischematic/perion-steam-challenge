@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test('should show my games', async ({ page }) => {
   await page.goto('/');
 
-  const steamIdInput = page.getByLabel('Enter your steam ID')
+  const steamIdInput = page.getByLabel('Enter your steam Vanity Name')
   const searchButton = page.getByTestId('search')
   const gameList = page.getByTestId('game-list')
   const gameCount = page.getByTestId('game-count')

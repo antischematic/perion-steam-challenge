@@ -1,25 +1,27 @@
 'use client'
 
 import styles from './page.module.scss';
-import {GetOwnedGamesResponse, getSteamGames} from './actions'
+import {getSteamGames, GetSteamGamesApiData} from './actions'
 import {useState, useTransition} from "react";
 import {GameList} from "../components/game-list/game-list"
 import {GameSearch} from "../components/game-search/game-search";
 import {GameCount} from "../components/game-count/game-count";
 
-const defaultGames: GetOwnedGamesResponse = {
+const defaultGames: GetSteamGamesApiData = {
   games: [],
-  game_count: 0
+  totalNumberOfGamesOwned: 0,
+  mostPlayedGame: undefined,
+  playtimeAcrossAllGames: 0
 }
 
 export default function Index() {
-  const [{ games = [], game_count }, setSteamGames] = useState(defaultGames)
+  const [{ games, totalNumberOfGamesOwned, playtimeAcrossAllGames, mostPlayedGame }, setSteamGames] = useState(defaultGames)
   const [error, setError] = useState<string | null>(null)
   const [transition, startTransition] = useTransition()
 
   async function handleSubmit(formData: FormData) {
-    setError(null)
     startTransition(async () => {
+      setError(null)
       const result = await getSteamGames(formData)
       if (result.ok) {
         setSteamGames(result.data)
@@ -33,8 +35,10 @@ export default function Index() {
     <h1>Welcome</h1>
     { transition && <div>Loading</div> }
     { error && <div>{error}</div>}
+    { playtimeAcrossAllGames > 0 && <div>Total days played: {Math.ceil(playtimeAcrossAllGames / (60 * 24))}</div>}
+    { mostPlayedGame && <div>Most played game: {mostPlayedGame.name}</div>}
     <GameSearch onSubmit={handleSubmit} />
-    <GameCount value={game_count} />
+    <GameCount value={totalNumberOfGamesOwned} />
     <GameList games={games} />
   </>);
 }
