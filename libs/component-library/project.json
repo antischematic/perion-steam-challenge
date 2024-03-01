@@ -1,0 +1,8 @@
+{
+  "name": "component-library",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "component-library/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {}
+}

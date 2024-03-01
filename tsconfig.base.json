@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@perion.steam.challenge/component-library": [
+        "libs/component-library/src/index.ts"
+      ],
+      "@perion.steam.challenge/component-library/server": [
+        "libs/component-library/src/server.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
