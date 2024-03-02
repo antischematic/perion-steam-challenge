@@ -1,7 +1,9 @@
-/*
- * Replace this with your own classes
- *
- * e.g.
- * .container {
- * }
-*/
+.host {
+
+}
+
+.buttonContainer {
+  &:not([data-selected="true"]) {
+    opacity: 0.5
+  }
+}
