@@ -32,7 +32,7 @@ Run `npx nx build perion-steam-challenge` to build the application. The build ar
 
 Install Playwright dependencies `npx playwright install-deps`
 
-Run `npx nx e2e perion-steam-challenge`.
+Run `npx nx e2e perion-steam-challenge-e2e`.
 
 ## Deployment
 
