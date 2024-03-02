@@ -1,14 +1,16 @@
 import styles from './avatar.module.scss';
+import Image from 'next/image'
+import defaultImage from './no-image.png'
 
 /* eslint-disable-next-line */
-export interface AvatarProps {}
-
-export function Avatar(props: AvatarProps) {
-  return (
-    <div className={styles['container']}>
-      <h1>Welcome to Avatar!</h1>
-    </div>
-  );
+export interface AvatarProps {
+  src?: string
+  alt?: string
 }
 
-export default Avatar;
+export function Avatar({src, alt}: AvatarProps) {
+  if (!src) return <Image src={defaultImage} alt="No image" width={48} height={48} />
+  return (
+    <img src={src} alt={alt} />
+  );
+}

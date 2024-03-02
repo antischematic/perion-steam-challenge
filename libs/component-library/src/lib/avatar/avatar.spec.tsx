@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import Avatar from './avatar';
+import {Avatar} from './avatar';
 
 describe('Avatar', () => {
   it('should render successfully', () => {
