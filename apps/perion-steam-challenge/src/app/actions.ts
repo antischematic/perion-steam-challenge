@@ -1,7 +1,7 @@
 'use server'
 
 import {z} from "zod";
-import {SteamApiClient, SteamGame} from "@perion.steam.challenge/steam-api";
+import {PlayerSummary, SteamApiClient, SteamGame} from "@perion.steam.challenge/steam-api";
 import {applySchema, sortBy} from "@perion.steam.challenge/utils";
 import * as process from "process";
 
@@ -17,6 +17,7 @@ export interface GetSteamGamesApiData {
   mostPlayedGame?: SteamGame
   games: SteamGame[]
   totalNumberOfGamesOwned: number
+  playerSummary: PlayerSummary
 }
 
 export interface GetSteamGamesApiSuccess {
@@ -34,13 +35,26 @@ export type GetSteamGamesApiResponse = GetSteamGamesApiSuccess | GetSteamGamesAp
 export async function getSteamGames(formData: FormData): Promise<GetSteamGamesApiResponse> {
   try {
     const {idValue, idType} = applySchema(getSteamGamesInputSchema, Object.fromEntries(formData))
-    const steamId = idType ? await steam.getSteamIdByVanityUrlName(idValue) : idValue
+    let steamId = idValue
+    if (idType === 1) {
+      const user = await steam.getSteamIdByVanityUrlName(idValue)
+      if (user.success) {
+        steamId = user.steamid
+      } else {
+        return {
+          ok: false,
+          message: `Not Found`
+        }
+      }
+    }
+
     const steamGames = await steam.getGamesBySteamId(steamId)
     const games = sortBy(steamGames.games, game => game.name)
     const steamGamesSortedByPlaytime = sortBy(steamGames.games, game => game.playtime_forever ?? 0)
     const totalNumberOfGamesOwned = steamGames.game_count
     const mostPlayedGame = steamGamesSortedByPlaytime[steamGamesSortedByPlaytime.length - 1]
     const playtimeAcrossAllGames = games.reduce((acc, game) => acc + (game.playtime_forever ?? 0), 0)
+    const playerSummary = await steam.getPlayerSummary(steamId)
 
     return {
       ok: true,
@@ -49,6 +63,7 @@ export async function getSteamGames(formData: FormData): Promise<GetSteamGamesAp
         totalNumberOfGamesOwned,
         playtimeAcrossAllGames,
         mostPlayedGame,
+        playerSummary
       }
     } as const
   } catch (e) {

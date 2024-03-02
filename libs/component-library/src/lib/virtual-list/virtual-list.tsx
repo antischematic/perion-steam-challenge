@@ -22,9 +22,10 @@ export function VirtualList<T>({ items, children, estimateSize, className, ref, 
 
   return (
     <div className={classNames(styles.host, className)} ref={mergeRefs([parentRef, ref])} {...rest}>
-      <List className={styles.list} style={{ display: 'block', height: `${rowVirtualiser.getTotalSize()}px` }}>
+      <List className={styles.list} style={{ display: 'block', height: `${rowVirtualiser.getTotalSize()}px`, margin: 0 }}>
         {rowVirtualiser.getVirtualItems().map((virtualItem) => {
-          return React.cloneElement(children(items[virtualItem.index]), {
+          const child = children(items[virtualItem.index])
+          return React.cloneElement(child, {
             key: virtualItem.key,
             style: {
               position: 'absolute',
@@ -32,7 +33,8 @@ export function VirtualList<T>({ items, children, estimateSize, className, ref, 
               left: 0,
               width: '100%',
               height: `${virtualItem.size}px`,
-              transform: `translateY(${virtualItem.start}px)`
+              transform: `translateY(${virtualItem.start}px)`,
+              ...child.props.style
             }
           })
         })}

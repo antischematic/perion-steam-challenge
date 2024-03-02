@@ -1,14 +1,14 @@
 import styles from './spinner.module.scss';
+import classNames from "classnames";
 
 /* eslint-disable-next-line */
-export interface SpinnerProps {}
+export interface SpinnerProps {
+  spin?: boolean
+  className?: string
+}
 
-export function Spinner(props: SpinnerProps) {
-  return (
-    <div className={styles['container']}>
-      <h1>Welcome to Spinner!</h1>
-    </div>
-  );
+export function Spinner({ spin, className }: SpinnerProps) {
+  return spin ? <span className={classNames(styles.host, className)}></span> : null
 }
 
 export default Spinner;

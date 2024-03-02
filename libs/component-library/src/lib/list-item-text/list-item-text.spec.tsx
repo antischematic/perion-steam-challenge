@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import FeatureTile from './feature-tile';
+import {ListItemText} from './list-item-text';
 
-describe('FeatureTile', () => {
+describe('ListItemText', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<FeatureTile />);
+    const { baseElement } = render(<ListItemText />);
     expect(baseElement).toBeTruthy();
   });
 });

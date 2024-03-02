@@ -1,7 +1,5 @@
-/*
- * Replace this with your own classes
- *
- * e.g.
- * .container {
- * }
-*/
+.host {
+  &:not(:disabled) {
+    cursor: pointer
+  }
+}

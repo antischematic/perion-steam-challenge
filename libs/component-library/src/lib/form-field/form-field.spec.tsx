@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import {GameCount} from './game-count';
+import FormField from './form-field';
 
-describe('GameCount', () => {
+describe('FormField', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<GameCount />);
+    const { baseElement } = render(<FormField />);
     expect(baseElement).toBeTruthy();
   });
 });

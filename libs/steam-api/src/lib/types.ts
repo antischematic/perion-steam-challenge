@@ -1,3 +1,4 @@
+import {z} from "zod";
 
 export interface SteamGame {
     appid: number
@@ -10,7 +11,25 @@ export interface SteamGame {
     has_community_visible_stats?: boolean
 }
 
-export type GetOwnedGamesResponse = {
+export type OwnedGames = {
     game_count: number
     games: SteamGame[]
+}
+
+export interface PlayerSummary {
+  steamid: string
+  communityvisibilitystate: number
+  profilestate: number
+  personaname: string
+  profileurl: string
+  avatar: string
+  avatarmedium: string
+  avatarfull: string
+  avatarhash: string
+  lastlogoff?: number
+  personastate: number
+  primaryclanid?: string
+  timecreated?: number
+  personastateflags?: number
+  loccountrycode?: string
 }

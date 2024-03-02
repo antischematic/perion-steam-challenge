@@ -22,8 +22,30 @@ export const steamIdApiSchema = z.object({
             steamid: z.string(),
         }),
         z.object({
-            success: z.coerce.boolean().pipe(z.literal(false)),
+            success: z.literal(42).transform<false>(() => false),
             message: z.string()
         })
     ])
+})
+
+export const playerSummarySchema = z.object({
+  response: z.object({
+    players: z.array(z.object({
+      steamid: z.string(),
+      communityvisibilitystate: z.number(),
+      profilestate: z.number(),
+      personaname: z.string(),
+      profileurl: z.string(),
+      avatar: z.string(),
+      avatarmedium: z.string(),
+      avatarfull: z.string(),
+      avatarhash: z.string(),
+      lastlogoff: z.optional(z.number()),
+      personastate: z.number(),
+      primaryclanid: z.optional(z.string()),
+      timecreated: z.optional(z.number()),
+      personastateflags: z.optional(z.number()),
+      loccountrycode: z.optional(z.string()),
+    }))
+  })
 })
