@@ -1,5 +1,6 @@
 import styles from './game-search.module.scss';
 import {useState} from "react";
+import {Button, ButtonGroup, Input} from "@perion.steam.challenge/component-library";
 
 export interface GameSearchProps {
     onSubmit: (formData: FormData) => void
@@ -10,15 +11,12 @@ export function GameSearch({ onSubmit }: GameSearchProps) {
 
     return (
         <form action={onSubmit}>
-            <div className="buttonGroup">
-                <label><input name="idType" type="radio" value={0} checked={idType === 0} onChange={() => setIdType(0)} />Steam ID</label>
-                <label><input name="idType" type="radio" value={1} checked={idType === 1} onChange={() => setIdType(1)}  />Vanity Name</label>
-            </div>
-            <label>
-                <span>Enter your Steam {idType ? 'Vanity Name' : 'ID'}</span>
-                <input name="idValue" type="text" />
-            </label>
-            <button data-testid="search">Search</button>
+            <ButtonGroup name="idType" selectedValue={idType} onChange={setIdType} className="buttonGroup">
+                <Button value={0}>Steam ID</Button>
+                <Button value={1}>Vanity Name</Button>
+            </ButtonGroup>
+            <Input name="idValue" placeholder={`Enter your Steam ${idType ? 'Vanity Name' : 'ID'}`} />
+            <Button data-testid="search">Search</Button>
         </form>
     )
 }
