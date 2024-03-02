@@ -1,2 +1,16 @@
-.page {
+@use "@perion.steam.challenge/styles/a11y";
+
+.host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin:auto;
+  gap: 32px;
+  padding: 48px 16px;
+}
+
+.errorMessage {
+  color: red;
+  font-weight: 500;
+  font-size: a11y.px(20)
 }

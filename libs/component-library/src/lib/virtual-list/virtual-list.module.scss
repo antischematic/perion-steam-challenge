@@ -1,0 +1,12 @@
+.host {
+  width: 800px;
+  height: 400px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  max-height: 80vh;
+}
+
+.list {
+  position: relative;
+  width: 100%;
+}

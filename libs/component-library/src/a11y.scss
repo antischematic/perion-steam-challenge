@@ -1,0 +1,11 @@
+@use "sass:string";
+
+// convert px to accessible relative unit
+@function px($value) {
+  $res: "";
+  @each $px in $value {
+    $res: $res + " " + #{$px / 16}rem
+  }
+
+  @return #{$res};
+}

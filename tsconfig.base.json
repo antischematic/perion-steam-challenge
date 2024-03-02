@@ -10,11 +10,20 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": ["es2022", "dom", "dom.iterable"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@perion.steam.challenge/component-library": [
+        "libs/component-library/src/index.ts"
+      ],
+      "@perion.steam.challenge/component-library/server": [
+        "libs/component-library/src/server.ts"
+      ],
+      "@perion.steam.challenge/steam-api": ["libs/steam-api/src/index.ts"],
+      "@perion.steam.challenge/utils": ["libs/utils/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

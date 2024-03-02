@@ -1,0 +1,10 @@
+.host {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.listItem {
+  flex-direction: column;
+  align-items: flex-start;
+}
