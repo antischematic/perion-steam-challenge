@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import VirtualScroll from './virtual-scroll';
+import {VirtualList} from './virtual-list';
 
 describe('VirtualScroll', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<VirtualScroll />);
+    const { baseElement } = render(<VirtualList items={[]} estimateSize={10}>{() => <div />}</VirtualList>);
     expect(baseElement).toBeTruthy();
   });
 });
