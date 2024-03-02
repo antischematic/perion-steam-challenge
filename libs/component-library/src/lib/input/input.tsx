@@ -1,13 +1,13 @@
 import styles from './input.module.scss';
+import {DetailedHTMLProps, InputHTMLAttributes} from "react";
+import classNames from "classnames";
 
 /* eslint-disable-next-line */
-export interface InputProps {}
+export interface InputProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {}
 
-export function Input(props: InputProps) {
+export function Input({ className, ...rest}: InputProps) {
   return (
-    <div className={styles['container']}>
-      <h1>Welcome to Input!</h1>
-    </div>
+    <input className={classNames(styles.host, className)} {...rest} />
   );
 }
 

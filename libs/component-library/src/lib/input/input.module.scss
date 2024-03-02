@@ -5,3 +5,13 @@
  * .container {
  * }
 */
+
+@use "@perion.steam.challenge/styles/a11y";
+
+.host {
+  border: 4px solid black;
+  box-shadow: none;
+  font-size: a11y.px(24);
+  padding: a11y.px(24 14);
+  text-align: center;
+}
