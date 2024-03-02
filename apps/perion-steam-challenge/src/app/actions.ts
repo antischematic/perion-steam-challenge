@@ -36,12 +36,12 @@ export async function getSteamGames(formData: FormData): Promise<GetSteamGamesAp
     const {idValue, idType} = applySchema(getSteamGamesInputSchema, Object.fromEntries(formData))
     const steamId = idType ? await steam.getSteamIdByVanityUrlName(idValue) : idValue
     const steamGames = await steam.getGamesBySteamId(steamId)
-    const games = steamGames.games
-    const steamGamesSortedByPlaytime = sortBy(games, game => game.playtime_forever ?? 0).reverse()
-    const totalNumberOfGamesOwned = steamGames.game_count ?? 0
-    const mostPlayedGame = steamGamesSortedByPlaytime[0]
-    const playtimeAcrossAllGames = steamGamesSortedByPlaytime
-        .reduce((acc, next) => acc + (next.playtime_forever ?? 0), 0)
+    const games = sortBy(steamGames.games, game => game.name)
+    const steamGamesSortedByPlaytime = sortBy(steamGames.games, game => game.playtime_forever ?? 0)
+    const totalNumberOfGamesOwned = steamGames.game_count
+    const mostPlayedGame = steamGamesSortedByPlaytime[steamGamesSortedByPlaytime.length - 1]
+    const playtimeAcrossAllGames = games.reduce((acc, game) => acc + (game.playtime_forever ?? 0), 0)
+
     return {
       ok: true,
       data: {
