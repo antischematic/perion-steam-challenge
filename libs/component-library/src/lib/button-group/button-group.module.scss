@@ -1,9 +1,8 @@
 .host {
-
 }
 
 .buttonContainer {
-  &:not([data-selected="true"]) {
-    opacity: 0.5
+  &:not([data-selected='true']) {
+    opacity: 0.5;
   }
 }

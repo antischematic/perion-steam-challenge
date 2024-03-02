@@ -1,5 +1,4 @@
-
-@use "@perion.steam.challenge/styles/a11y";
+@use '@perion.steam.challenge/styles/a11y';
 
 .host {
   display: inline-flex;
@@ -9,7 +8,6 @@
   input {
     font-size: a11y.px(16);
     padding: a11y.px(16 8);
-
   }
   button {
     font-size: a11y.px(16);
@@ -20,7 +18,6 @@
 
 @media (min-width: 700px) {
   .host {
-
     input {
       font-size: a11y.px(24);
       padding: a11y.px(24 14);

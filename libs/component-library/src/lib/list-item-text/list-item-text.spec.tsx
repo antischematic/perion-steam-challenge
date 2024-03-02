@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import {ListItemText} from './list-item-text';
+import { ListItemText } from './list-item-text';
 
 describe('ListItemText', () => {
   it('should render successfully', () => {
