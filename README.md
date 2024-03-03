@@ -42,5 +42,4 @@ The production URL is https://perion-steam-challenge.vercel.app/
 
 ### Known Issues
 
-Production uses my personal Steam API key. To test the app in production select `Vanity Name` and enter `monkyyy`. The API will only
-return results for my Steam user.
+Production uses my personal Steam API key. To test the app in production select `Vanity Name` and enter `monkyyy`. The app will only show data for steam accounts that have both their profile and game list set to public.

@@ -16,6 +16,18 @@ export function GameSearchResults(props?: { results?: GetSteamGamesApiData }) {
     playerSummary,
   } = props.results;
 
+  if (playerSummary.profilestate !== 1) {
+    return <p className={styles.heading}>This account doesn&rsquo;t have a profile :/</p>
+  }
+
+  if (playerSummary.communityvisibilitystate === 1) {
+    return <p className={styles.heading}>This account is private :/</p>
+  }
+
+  if (games.length === 0) {
+    return <p className={styles.heading}>{playerSummary.personaname}&rsquo;s game list is private :/</p>
+  }
+
   return (
     <>
       {playerSummary && (
@@ -27,7 +39,7 @@ export function GameSearchResults(props?: { results?: GetSteamGamesApiData }) {
       )}
       <GameList games={games} />
       <GameStatistics
-        playerName={playerSummary?.personaname}
+        playerName={playerSummary.personaname}
         playtimeAcrossAllGames={playtimeAcrossAllGames}
         mostPlayedGame={mostPlayedGame}
       />
