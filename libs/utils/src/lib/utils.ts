@@ -60,7 +60,7 @@ export function formatNumber(num: number) {
 export function getSteamGameImage(appId: number, hash?: string) {
   return (
     hash &&
-    `http://media.steampowered.com/steamcommunity/public/images/apps/${appId}/${hash}.jpg`
+    `https://media.steampowered.com/steamcommunity/public/images/apps/${appId}/${hash}.jpg`
   );
 }
 

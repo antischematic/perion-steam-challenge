@@ -27,7 +27,7 @@ export class SteamApiClient {
     { includeAppInfo = true, includePlayedFreeGames = true } = {}
   ): Promise<OwnedGames> {
     const response = await fetch(
-      `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${this.apiKey}&steamid=${steamId}&format=json&include_appinfo=${includeAppInfo}&include_played_free_games=${includePlayedFreeGames}`
+      `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${this.apiKey}&steamid=${steamId}&format=json&include_appinfo=${includeAppInfo}&include_played_free_games=${includePlayedFreeGames}`
     );
     const data = await response.json();
     const steamGamesByUserId = applySchema(ownedGamesApiSchema, data);
@@ -39,7 +39,7 @@ export class SteamApiClient {
   }
 
   async getPlayerSummary(steamId: string) {
-    const url = `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${this.apiKey}&steamids=${steamId}`;
+    const url = `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${this.apiKey}&steamids=${steamId}`;
     const response = await fetch(url);
     const data = await response.json();
     const playerSummary = applySchema(playerSummarySchema, data);
